@@ -1,4 +1,4 @@
-Le problème du dîner des cinq philosophes
+**Le problème du dîner des cinq philosophes
 ______________________________________________
 
 Le dîner des philosophes est un problème particulièrement intéressant, car il met en œuvre dans sa réalisation, deux techniques d'utilisations différentes des sémaphores : l'exclusion mutuelle classique, mais aussi la possibilité de bloquer un processus grâce à un sémaphore privé.
