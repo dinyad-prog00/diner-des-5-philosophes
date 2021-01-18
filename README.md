@@ -75,7 +75,7 @@ Examinons maintenant les conditions pour que celui-ci soit libérer.
 Philosophe arrêtant de manger, passage à l'état "pense" : 
 __________________________________________________________
 
-Début 
+	Début 
 
 	P(mutex) 
 
