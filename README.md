@@ -47,19 +47,19 @@ ___________________________________
 
 	Début 
 
-		P(mutex) 
+	P(mutex) 
 
 		Si les deux voisins immédiats ne mangent pas Alors 
 
-		 V(sémaphore privé) 
+			 V(sémaphore privé) 
 
-		Etat = mange 
+			Etat = mange 
 
-	Sinon 
+		Sinon 
 
-		Etat = veut manger 
+			Etat = veut manger 
 
-	FSi 
+		FSi 
 
 	V(mutex) 
 
