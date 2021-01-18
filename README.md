@@ -45,29 +45,29 @@ Ainsi, on peut alors décrire les procédures de changement d'état des philosop
 Philosophe désirant manger :
 ___________________________________
 
-Début 
+	Début 
 
-P(mutex) 
+		P(mutex) 
 
-Si les deux voisins immédiats ne mangent pas Alors 
+		Si les deux voisins immédiats ne mangent pas Alors 
 
- V(sémaphore privé) 
+		 V(sémaphore privé) 
 
-	Etat = mange 
+		Etat = mange 
 
-Sinon 
+	Sinon 
 
-	Etat = veut manger 
+		Etat = veut manger 
 
-FSi 
+	FSi 
 
-V(mutex) 
+	V(mutex) 
 
-P(sémaphore privé) 
+	P(sémaphore privé) 
 
-mange ... 
+	mange ... 
 
-Fin 
+	Fin 
 
 
 Examinons maintenant les conditions pour que celui-ci soit libérer. 
@@ -77,32 +77,32 @@ __________________________________________________________
 
 Début 
 
-P(mutex) 
+	P(mutex) 
 
-Si le voisin de gauche veut manger ET son voisin ne mange pas Alors 
+	Si le voisin de gauche veut manger ET son voisin ne mange pas Alors 
 
-	Etat du voisin = mange 
+		Etat du voisin = mange 
 
-	V(sémaphore privé du voisin) 
+		V(sémaphore privé du voisin) 
 
-FSi 
+	FSi 
 
-(même chose pour le voisin de droite) 
+	(même chose pour le voisin de droite) 
 
-Etat = pense 
+	Etat = pense 
 
-V(mutex) 
+	V(mutex) 
 
-pense ... 
+	pense ... 
 
-Fin 
+	Fin 
 
 Un processus endormit, c'est à dire bloqué en état "veut manger" juste avant de se mettre à manger, n'est réveillé que par un de ses voisins (de gauche ou de droite), lorsque celui-ci pose ses fourchettes et qu'il s'est assuré que l'autre voisin du processus endormit n'occupe pas ses fourchettes. 
 
 Alors, il effectue l'opération V sur le sémaphore privé du processus endormit : le sémaphore redevient positif , et le processus est réveillé, il poursuit son code en se mettant à manger. 
 
 
-NB : V : sem_post, P : sem_wait
+	NB : V : sem_post, P : sem_wait
 
 
 Le code est écrit en C dans le présente projet.
