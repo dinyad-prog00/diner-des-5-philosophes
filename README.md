@@ -10,7 +10,7 @@ ___________________________
 Considérons cinq philosophes, installés autour d'une table circulaire, et qui passent leurs temps à penser et à manger.
 
 La table est mise avec cinq fourchettes qui sont disposés entre chacun des philosophes. 
-De temps en temps, un philosophe a faim et essaye de prendre les couverts qui sont immédiatement a cotés de lui (ceux qui sont entre lui et son voisin de gauche et de droite). Un philosophe a besoin de  deux fourchettes pour manger, et ne peut évidemment pas prendre un fourchette qui est dans la main d'un voisin. 
+De temps en temps, un philosophe a faim et essaye de prendre les fourchettes qui sont immédiatement a cotés de lui (ceux qui sont entre lui et son voisin de gauche et de droite). Un philosophe a besoin de  deux fourchettes pour manger, et ne peut évidemment pas prendre un fourchette qui est dans la main d'un voisin. 
 Quand un philosophe affamé a ses deux fourchettes dans les mains en même temps, il mange sans libérer ses fourchettes. Dans le cas contraire, il doit attendre que ceux-ci deviennent libres.
 
 Enfin, quand il a finit de manger, il repose ses deux fourchettes et commence à penser à nouveau. 
@@ -46,17 +46,29 @@ Philosophe désirant manger :
 ___________________________________
 
 Début 
+
 P(mutex) 
+
 Si les deux voisins immédiats ne mangent pas Alors 
-	V(sémaphore privé) 
+
+ V(sémaphore privé) 
+
 	Etat = mange 
+
 Sinon 
+
 	Etat = veut manger 
+
 FSi 
+
 V(mutex) 
+
 P(sémaphore privé) 
+
 mange ... 
+
 Fin 
+
 
 Examinons maintenant les conditions pour que celui-ci soit libérer. 
 
@@ -64,15 +76,25 @@ Philosophe arrêtant de manger, passage à l'état "pense" :
 __________________________________________________________
 
 Début 
+
 P(mutex) 
+
 Si le voisin de gauche veut manger ET son voisin ne mange pas Alors 
+
 	Etat du voisin = mange 
+
 	V(sémaphore privé du voisin) 
+
 FSi 
+
 (même chose pour le voisin de droite) 
+
 Etat = pense 
+
 V(mutex) 
+
 pense ... 
+
 Fin 
 
 Un processus endormit, c'est à dire bloqué en état "veut manger" juste avant de se mettre à manger, n'est réveillé que par un de ses voisins (de gauche ou de droite), lorsque celui-ci pose ses fourchettes et qu'il s'est assuré que l'autre voisin du processus endormit n'occupe pas ses fourchettes. 
@@ -81,6 +103,7 @@ Alors, il effectue l'opération V sur le sémaphore privé du processus endormit
 
 
 NB : V : sem_post, P : sem_wait
+
 
 Le code est écrit en C dans le présente projet.
 
